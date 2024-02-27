@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone-Hunter-2</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.tailwindcss.com"></script>
+
+<body>
+
+        <header>
+
+        </header>
+        <main>
+            <section class="m-10">
+               <div>
+                <input id="search-input" type="text" class="border rounded-l-lg px-4 py-2 w-3/5 focus:outline-none" placeholder="Search...">
+                <button onclick="searchWork()" class="bg-blue-500 text-white rounded-r-lg px-4 py-2 hover:bg-gray-600 focus:outline-none">Search</button>
+               </div>
+            </section>
+            <section>
+                <div class="grid md:grid-cols-3 gap-4" id="phone-container">
+                    
+                </div>
+                <div id="show-btn" class="hidden ">
+                    <button class="bg-red-500 hover:bg-red-400  p-4 rounded-xl my-7 flex mx-auto">Show All</button>
+                </div>
+            </section>
+        </main>
+        <footer>
+
+        </footer>
+
+
+    <script src="index2.js"></script>
+</body>
+</html>
