@@ -1,25 +1,28 @@
 
 
-const loadData = async(searchPhone) => {
+const loadData = async(searchPhone,isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchPhone}`)
     const data = await res.json()
     const phone = data.data;
-    showPhones(phone)
+    showPhones(phone,isShowAll)
   
 }
 
 
 /////   display the phones in the browser
 
-const showPhones = (phone) => {
+const showPhones = (phone,isShowAll) => {
     // console.log(phone)
     const getPhoneContainer = document.getElementById('phone-container')
+     ////  show all related work
+     if(!isShowAll){
+      phone = phone.slice(0,9);
+     }
     
-    phone = phone.slice(0,9);
 
     ////   show all button 
     const showBtn = document.getElementById('show-btn')
-    if(phone.length >= 9){
+    if(phone.length >= 9 && !isShowAll){
       showBtn.classList.remove('hidden')
     }
     else{
@@ -30,6 +33,7 @@ const showPhones = (phone) => {
     getPhoneContainer.innerHTML = ''
 
     phone.map(singlePhone => {
+      loadingSpinner(false)  /////  loading spinner parameter
         console.log(singlePhone)
         const div = document.createElement('div')
         div.innerHTML = `
@@ -51,9 +55,26 @@ const showPhones = (phone) => {
 
 /////  search related work is here below
 
-const searchWork = () => {
+const searchWork = (isShowAll) => {  ///  isShowAll show all parameter
+  loadingSpinner(true) ////   spinner parameter
   const getInputId = document.getElementById('search-input').value; 
   console.log(getInputId)
-  loadData(getInputId)
+  loadData(getInputId,isShowAll)
 }
 
+//////   loading spinner 
+const loadingSpinner = (isLoading) => {
+  const getSpinnerId = document.getElementById('spinner-loading');
+  if(isLoading){
+    getSpinnerId.classList.remove('hidden')
+  }
+  else{
+    getSpinnerId.classList.add('hidden')
+  }
+}
+
+
+/////     show all the phone in show all button  
+const handleShowAllBtn = () => {
+  searchWork(true)
+}
